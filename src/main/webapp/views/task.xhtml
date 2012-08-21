@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="/templates/template.xhtml">
+	<ui:define name="content">
+		<h1>
+			<h:outputText value="Tasks"
+				rendered="#{not empty taskController.tasks}" />
+		</h1>
+		<h:form id="taskListForm">
+			<p:dataTable value="#{taskController.tasks}" var="task"
+				id="taskListDataTable" rendered="#{not empty taskController.tasks}">
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Id" />
+					</f:facet>
+					<h:outputText value="#{task.id}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Description" />
+					</f:facet>
+					<h:outputText value="#{task.description}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Priority" />
+					</f:facet>
+					<h:outputText value="#{task.priority}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Last updated" />
+					</f:facet>
+					<h:outputText value="#{task.lastUpdateTimestamp}" />
+				</p:column>
+			</p:dataTable>
+			<br />
+			<h1>
+				<h:outputText value="Create a task" />
+			</h1>
+			<p:messages />
+			<p:panelGrid columns="2">
+				<p:outputLabel for="taskDesc" value="Description" />
+				<p:inputText value="#{taskController.task.description}"
+					id="taskDesc" />
+				<p:outputLabel for="taskPriority" value="Priority" />
+				<p:spinner value="#{taskController.task.priority}" id="taskPriority" />
+			</p:panelGrid>
+			<p:commandButton action="#{taskController.saveTask}" value="Add task"
+				update="taskListForm" />
+			<p:button outcome="task" value="Reset" />
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

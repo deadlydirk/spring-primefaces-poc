@@ -1,0 +1,1 @@
+This is a simple POC project to integrate Spring + JPA/Hibernate + JSF/Primefaces

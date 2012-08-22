@@ -11,7 +11,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jetty.version>6.1.4</jetty.version>
-		<spring.version>3.0.5.RELEASE</spring.version>
+		<spring.version>3.1.1.RELEASE</spring.version>
 		<slf4j.version>1.5.10</slf4j.version>
 		<java.version>1.6</java.version>
 		<junit.version>4.8.2</junit.version>
@@ -19,6 +19,7 @@
 		<log4j.version>1.2.15</log4j.version>
 		<jasperreports.version>4.7.0</jasperreports.version>
 		<hibernate.version>4.1.5.Final</hibernate.version>
+		<aspectj.version>1.6.12</aspectj.version>
 	</properties>
 
 	<dependencies>
@@ -67,6 +68,13 @@
 			<scope>compile</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${aspectj.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
 		<!-- Reporting with JasperReports -->
 
 		<dependency>
@@ -87,7 +95,7 @@
 					<artifactId>commons-logging</artifactId>
 				</exclusion>
 				<exclusion>
-				
+
 				</exclusion>
 			</exclusions>
 		</dependency>
@@ -105,6 +113,7 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>${h2.version}</version>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
@@ -115,6 +124,18 @@
 		</dependency>
 
 		<!-- Spring Dependencies -->
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>1.1.0.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>

@@ -1,5 +1,9 @@
 package com.realdolmen.springjsf.services.impl;
 
+import static org.junit.Assert.assertFalse;
+
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,11 +25,13 @@ public class TaskServiceImplTest {
 	private TaskService taskService;
 
 	@Test
-	public void shouldSaveTask() {
+	public void shouldSaveTaskAndFindIt() {
 		Task oldTask = new Task();
 		oldTask.setDescription("Sample Description");
 		Task newTask = taskService.save(oldTask);
 		Assert.assertNotNull("Saved task ID is null,probably not saved",
 				newTask.getId());
+		List<Task> tasks = taskService.findAll();
+		assertFalse(tasks.isEmpty());
 	}
 }

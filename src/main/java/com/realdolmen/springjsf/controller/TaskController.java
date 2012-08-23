@@ -36,7 +36,6 @@ public class TaskController {
 	}
 
 	public void saveTask() {
-		LOGGER.debug("saving task: " + task);
 		taskService.save(task);
 		task = new Task();
 		invalidateTasks();

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="taskReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="88318767-ea21-4702-9d48-8270b379375e">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="priority" class="java.lang.Integer"/>
+	<field name="dueDate" class="java.util.Date"/>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement uuid="21c116fe-510e-4105-8fde-5de7add73a03" x="0" y="0" width="555" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[str("report.title.taskreport")]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement uuid="b57c5c60-2c1d-4483-8f7f-6a2ec44a8c21" x="0" y="0" width="48" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[str("label.priority")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e3e7be1c-50ab-4d53-8647-62448d1a22d1" x="122" y="0" width="433" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[str("label.description")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="80b6af83-d46b-4fec-8b76-a164455c26a6" x="53" y="0" width="64" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[str("label.duedate")]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="84d4d9ae-ec13-41ed-86a5-dd9d7d2ad810" x="122" y="0" width="433" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="6b607f32-074b-4862-8a3a-3413f53360ef" x="0" y="0" width="48" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{priority}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement uuid="6b607f32-074b-4862-8a3a-3413f53360ef" x="53" y="0" width="64" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[DateFormat.getDateInstance(DateFormat.SHORT, $P{REPORT_LOCALE}).format($F{dueDate})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

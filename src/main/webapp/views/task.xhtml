@@ -7,8 +7,7 @@
 <ui:composition template="/templates/template.xhtml">
 	<ui:define name="content">
 		<h1>
-			<h:outputText value="Tasks"
-				rendered="#{not empty taskController.tasks}" />
+			<h:outputText value="#{msg['label.tasks']}" />
 		</h1>
 		<h:form id="taskListForm">
 			<p:dataTable value="#{taskController.tasks}" var="task"
@@ -21,41 +20,49 @@
 				</p:column>
 				<p:column>
 					<f:facet name="header">
-						<h:outputText value="Description" />
+						<h:outputText value="#{msg['label.description']}" />
 					</f:facet>
 					<h:outputText value="#{task.description}" />
 				</p:column>
 				<p:column>
 					<f:facet name="header">
-						<h:outputText value="Priority" />
+						<h:outputText value="#{msg['label.priority']}" />
 					</f:facet>
 					<h:outputText value="#{task.priority}" />
 				</p:column>
 				<p:column>
 					<f:facet name="header">
-						<h:outputText value="Last updated" />
+						<h:outputText value="#{msg['label.duedate']}" />
 					</f:facet>
-					<h:outputText value="#{task.lastUpdateTimestamp}" />
+					<h:outputText value="#{task.dueDate}" />
 				</p:column>
 			</p:dataTable>
 			<br />
 			<h1>
-				<h:outputText value="Create a task" />
+				<h:outputText value="#{msg['label.create.task']}" />
 			</h1>
 			<p:messages />
 			<p:panelGrid columns="2">
-				<p:outputLabel for="taskDesc" value="Description" />
+				<h:outputLabel for="taskDesc" value="#{msg['label.description']}" />
 				<p:inputText value="#{taskController.task.description}"
 					id="taskDesc" />
-				<p:outputLabel for="taskPriority" value="Priority" />
+				<h:outputLabel for="taskPriority" value="#{msg['label.priority']}" />
 				<p:spinner value="#{taskController.task.priority}" id="taskPriority" />
+				<h:outputLabel for="taskDueDate" value="#{msg['label.duedate']}" />
+				<p:calendar value="#{taskController.task.dueDate}" id="taskDueDate"
+					locale="#{taskController.locale}" />
 			</p:panelGrid>
-			<p:commandButton action="#{taskController.saveTask}" value="Add task"
-				update="taskListForm" />
-			<p:button outcome="task" value="Reset" />
-			<p:commandButton action="#{taskController.downloadTasksReport}" value="Download"/>
+			<p:commandButton action="#{taskController.saveTask}" value="#{msg['label.add']}"
+				update="taskListForm" type="submit" />
+			<p:button outcome="task" value="#{msg['label.reset']}" />
 		</h:form>
-
+		<h:form id="downloadForm">
+			<p:commandButton id="downloadReportButton" value="#{msg['label.download']}"
+				onclick="PrimeFaces.monitorDownload(start, stop)" ajax="false"
+				icon="ui-icon-arrowthichk-s">
+				<p:fileDownload value="#{taskController.reportFile}" />
+			</p:commandButton>
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>

@@ -4,10 +4,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:body>
-	<h1>Menu</h1>
+	<h1>#{menu.header}</h1>
 	<ul>
-		<li><h:link value="Home" outcome="home" /></li>
-		<li><h:link value="Manage tasks" outcome="task" /></li>
+		<li><h:link value="#{msg['menu.home']}" outcome="home" /></li>
+		<li><h:link value="#{msg['menu.manage.tasks']}" outcome="task" /></li>
 	</ul>
 </h:body>
 </html>

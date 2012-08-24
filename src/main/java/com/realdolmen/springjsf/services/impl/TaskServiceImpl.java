@@ -27,4 +27,9 @@ public class TaskServiceImpl implements TaskService {
 		return (List<Task>) taskRepository.findAll();
 	}
 
+	@Override
+	public List<Task> findByDescription(String description) {
+		return taskRepository.findByDescription("%" + description + "%");
+	}
+
 }

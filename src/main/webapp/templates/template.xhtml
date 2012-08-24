@@ -2,7 +2,8 @@
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Tasks</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -12,7 +13,7 @@
 	<h:panelGroup id="page" layout="block">
 		<h:panelGroup id="header" layout="block">
 			<h1>
-				<h:link outcome="home" value="Task Management" />
+				<h:link outcome="home" value="#{msg['menu.manage.tasks']}" />
 			</h1>
 		</h:panelGroup>
 		<h:panelGroup id="container" layout="block">
@@ -23,9 +24,22 @@
 				<ui:insert name="content">Main Content</ui:insert>
 			</h:panelGroup>
 		</h:panelGroup>
-		<h:panelGroup id="footer" layout="block">#{messages.footerText}
+		<h:panelGroup id="footer" layout="block">#{msg['footerText']}
 		</h:panelGroup>
 	</h:panelGroup>
+	<p:dialog modal="true" widgetVar="statusDialog"
+		header="#{msg['label.please.wait']}" draggable="false"
+		closable="false" resizable="false">
+		<p:graphicImage value="/resources/img/ajaxloadingbar.gif" />
+	</p:dialog>
+	<script type="text/javascript">
+		function start() {
+			statusDialog.show();
+		}
 
+		function stop() {
+			statusDialog.hide();
+		}
+	</script>
 </h:body>
 </html>

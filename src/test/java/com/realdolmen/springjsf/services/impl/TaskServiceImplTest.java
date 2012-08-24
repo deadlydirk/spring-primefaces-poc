@@ -1,5 +1,6 @@
 package com.realdolmen.springjsf.services.impl;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 import java.util.List;
@@ -7,6 +8,8 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -23,6 +26,8 @@ public class TaskServiceImplTest {
 
 	@Autowired
 	private TaskService taskService;
+	
+	private final static Logger LOGGER = LoggerFactory.getLogger(TaskServiceImplTest.class);
 
 	@Test
 	public void shouldSaveTaskAndFindIt() {
@@ -32,6 +37,16 @@ public class TaskServiceImplTest {
 		Assert.assertNotNull("Saved task ID is null,probably not saved",
 				newTask.getId());
 		List<Task> tasks = taskService.findAll();
+		LOGGER.warn(tasks.toString());
 		assertFalse(tasks.isEmpty());
+	}
+	
+	@Test
+	public void shouldFindTasksByDescription() {
+		List<Task> results = taskService.findByDescription("Task 1");
+		assertEquals(1, results.size());
+		
+		results = taskService.findByDescription("task");
+		assertEquals(4, results.size());
 	}
 }

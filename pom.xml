@@ -127,12 +127,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-jpamodelgen</artifactId>
-			<version>1.2.0.Final</version>
-		</dependency>
-
-		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.0-api</artifactId>
 			<version>1.0.0.Final</version>
@@ -316,6 +310,12 @@
 			<url>http://repository.primefaces.org</url>
 			<layout>default</layout>
 		</repository>
+		<!-- Maven processor plugin repo's -->
+		<repository>
+			<id>jfrog</id>
+			<name>Jfrog plugins</name>
+			<url>http://repo.jfrog.org/artifactory/plugins-releases</url>
+		</repository>
 	</repositories>
 
 	<build>
@@ -382,7 +382,34 @@
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
+					<compilerArgument>-proc:none</compilerArgument>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.bsc.maven</groupId>
+				<artifactId>maven-processor-plugin</artifactId>
+				<version>2.0.0</version>
+				<executions>
+					<execution>
+						<id>process</id>
+						<phase>generate-sources</phase><!-- this is actually the default, could 
+							be omitted -->
+						<goals>
+							<goal>process</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/generated-sources/metamodel</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.hibernate</groupId>
+						<artifactId>hibernate-jpamodelgen</artifactId>
+						<version>1.2.0.Final</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 
 			<!-- Tomcat plugin for embedded tomcat -->

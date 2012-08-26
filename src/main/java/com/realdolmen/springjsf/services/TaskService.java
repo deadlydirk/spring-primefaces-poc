@@ -9,7 +9,7 @@ public interface TaskService {
 
 	Task save(Task task);
 	
-	void remove(Task task);
+	void delete(Task task);
 
 	List<Task> findAll();
 	

@@ -23,32 +23,37 @@ public class TaskServiceImpl implements TaskService {
 	@Resource
 	private TaskRepository taskRepository;
 
-	@Override
 	@Transactional
+	@Override
 	public Task save(Task task) {
 		return taskRepository.save(task);
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public List<Task> findAll() {
 		return taskRepository.findAll();
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public List<Task> findByDescriptionWithSpecification(String description) {
 		return taskRepository.findAll(descriptionLike(description));
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public List<Task> findByDescriptionWithQuery(String description) {
 		return taskRepository.findByDescription("%" + description + "%");
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public List<Task> findByDueDateBetween(Date begin, Date end) {
 		return taskRepository.findAll(dueDateBetween(begin, end));
 	}
 
+	@Transactional(readOnly = true)
 	@Override
 	public List<Task> findByExample(Task task) {
 		Specifications<Task> specs = Specifications.where( //
@@ -62,8 +67,9 @@ public class TaskServiceImpl implements TaskService {
 		return taskRepository.findAll(specs);
 	}
 
+	@Transactional
 	@Override
-	public void remove(Task task) {
+	public void delete(Task task) {
 		taskRepository.delete(task.getId());
 	}
 }

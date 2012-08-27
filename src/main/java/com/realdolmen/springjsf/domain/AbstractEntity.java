@@ -40,6 +40,10 @@ public abstract class AbstractEntity<K, V> {
 	public V getVersion() {
 		return version;
 	}
+
+	public boolean isNewEntity(){
+		return id != null;
+	}
 	
 	@Override
 	public String toString() {

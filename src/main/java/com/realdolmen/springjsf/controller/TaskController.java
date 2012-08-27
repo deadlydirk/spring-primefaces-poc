@@ -32,7 +32,8 @@ public class TaskController {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(TaskController.class);
 
-	private Task task = new Task();
+	private Task newTask = new Task();
+	private Task selectedTask = new Task();
 	private List<Task> tasks;
 	private StreamedContent reportFile;
 	private Locale locale = FacesContext.getCurrentInstance()
@@ -41,16 +42,33 @@ public class TaskController {
 	@Autowired
 	private TaskService taskService;
 
-	public Task getTask() {
-		return task;
-	}
+	private String goBackViewId;
 
-	public void saveTask() {
+	public void saveTask(Task task) {
 		taskService.save(task);
-		task = new Task();
 		invalidateTasks();
 	}
-
+	
+	public void saveNewTask() {
+		saveTask(newTask);
+	}
+	
+	public void saveNewTaskAndReset() {
+		saveTask(newTask);
+		newTask = new Task();
+	}
+	
+	
+	public void saveSelectedTask() {
+		saveTask(selectedTask);
+	}
+	
+	public String deleteSelectedTask() {
+		taskService.delete(selectedTask);
+		invalidateTasks();
+		return "taskList";
+	}
+	
 	private void invalidateTasks() {
 		tasks = null;
 	}
@@ -65,10 +83,11 @@ public class TaskController {
 	public void downloadTasksReport() throws JRException, IOException {
 		LOGGER.debug("download report");
 		String reportName = "taskReport";
-		InputStream report = ReportUtils.createReport(
-				reportName, createParameters(), getTasks());
+		InputStream report = ReportUtils.createReport(reportName,
+				createParameters(), getTasks());
 		reportFile = new DefaultStreamedContent(report,
-				ReportUtils.PDF_CONTENT_TYPE, reportName + ReportUtils.PDF_EXTENSION);
+				ReportUtils.PDF_CONTENT_TYPE, reportName
+						+ ReportUtils.PDF_EXTENSION);
 	}
 
 	private Map<String, Object> createParameters() {
@@ -87,5 +106,41 @@ public class TaskController {
 	public Locale getLocale() {
 		return locale;
 	}
+
+	public Task getSelectedTask() {
+		return selectedTask;
+	}
+
+	public void setSelectedTask(Task selectedTask) {
+		this.selectedTask = selectedTask;
+	}
+
+	public String createNewTask() {
+		newTask = new Task();
+		return "taskCreate";
+	}
+	
+	public String edit(Task task) {
+		selectedTask = task;
+		setGoBackViewId();
+		return "taskEdit";
+	}
+	
+	private void setGoBackViewId() {
+		this.goBackViewId = FacesContext.getCurrentInstance().getViewRoot().getViewId();		
+	}
+
+	public String goBack() {
+		return goBackViewId;
+	}
+
+	public Task getNewTask() {
+		return newTask;
+	}
+
+	public void setNewTask(Task newTask) {
+		this.newTask = newTask;
+	}
+	
 
 }

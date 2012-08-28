@@ -22,6 +22,7 @@ import org.springframework.core.io.Resource;
 
 public class ReportUtils {
 
+	public static final String REPORT_RESOURCE_BUNDLE = "i18n.common.MessageResources";
 	public static final String COMPILED_REPORTS_DIRECTORY = "/reports/";
 	public static final String COMPILED_REPORTS_EXTENSION = ".jasper";
 	public static final String UNCOMPILED_REPORTS_DIRECTORY = "/reports/uncompiled/";

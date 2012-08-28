@@ -20,21 +20,21 @@
 	<columnHeader>
 		<band height="28" splitType="Stretch">
 			<textField>
-				<reportElement uuid="b57c5c60-2c1d-4483-8f7f-6a2ec44a8c21" x="0" y="0" width="48" height="20"/>
+				<reportElement uuid="b57c5c60-2c1d-4483-8f7f-6a2ec44a8c21" x="0" y="0" width="48" height="26"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[str("label.priority")]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="e3e7be1c-50ab-4d53-8647-62448d1a22d1" x="122" y="0" width="433" height="20"/>
+				<reportElement uuid="e3e7be1c-50ab-4d53-8647-62448d1a22d1" x="122" y="0" width="433" height="26"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[str("label.description")]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="80b6af83-d46b-4fec-8b76-a164455c26a6" x="53" y="0" width="64" height="20"/>
+				<reportElement uuid="80b6af83-d46b-4fec-8b76-a164455c26a6" x="53" y="0" width="64" height="26"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>

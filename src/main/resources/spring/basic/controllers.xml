@@ -11,12 +11,8 @@
 		configure as beans -->
 	<context:component-scan base-package="com.realdolmen.springjsf.controller" />
 
-	<tx:annotation-driven transaction-manager="transactionManager" />
 	<mvc:annotation-driven />
 
 	<mvc:resources mapping="/resources/**" location="/resources/" />
-
-	<bean id="validator"
-		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 
 </beans>

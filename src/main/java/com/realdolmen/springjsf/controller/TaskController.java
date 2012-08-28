@@ -8,6 +8,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 
 import net.sf.jasperreports.engine.JRException;
@@ -32,23 +33,46 @@ public class TaskController {
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(TaskController.class);
 
-	private Task task = new Task();
+	private Task newTask = new Task();
+	private Task selectedTask = new Task();
 	private List<Task> tasks;
 	private StreamedContent reportFile;
-	private Locale locale = FacesContext.getCurrentInstance()
-			.getExternalContext().getRequestLocale();
+	private Locale locale;
 
+	@PostConstruct
+	public void init() {
+		locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
+		LOGGER.debug("current locale: " + locale);
+	}
+	
 	@Autowired
 	private TaskService taskService;
 
-	public Task getTask() {
-		return task;
+	private String goBackViewId;
+
+	public void saveTask(Task task) {
+		taskService.save(task);
+		invalidateTasks();
 	}
 
-	public void saveTask() {
-		taskService.save(task);
-		task = new Task();
+	public void saveNewTask() {
+		saveTask(newTask);
+		newTask = new Task();
+	}
+
+	public void saveNewTaskAndReset() {
+		saveTask(newTask);
+		newTask = new Task();
+	}
+
+	public void saveSelectedTask() {
+		saveTask(selectedTask);
+	}
+
+	public String deleteSelectedTask() {
+		taskService.delete(selectedTask);
 		invalidateTasks();
+		return "taskList";
 	}
 
 	private void invalidateTasks() {
@@ -63,19 +87,20 @@ public class TaskController {
 	}
 
 	public void downloadTasksReport() throws JRException, IOException {
-		LOGGER.debug("download report");
+		LOGGER.debug("download report, language: " + locale.getLanguage());
 		String reportName = "taskReport";
-		InputStream report = ReportUtils.createReport(
-				reportName, createParameters(), getTasks());
+		InputStream report = ReportUtils.createReport(reportName,
+				createParameters(), getTasks());
 		reportFile = new DefaultStreamedContent(report,
-				ReportUtils.PDF_CONTENT_TYPE, reportName + ReportUtils.PDF_EXTENSION);
+				ReportUtils.PDF_CONTENT_TYPE, reportName
+						+ ReportUtils.PDF_EXTENSION);
 	}
 
 	private Map<String, Object> createParameters() {
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put(JRParameter.REPORT_LOCALE, locale);
 		parameters.put(JRParameter.REPORT_RESOURCE_BUNDLE,
-				ResourceBundle.getBundle("MessageResources"));
+				ResourceBundle.getBundle(ReportUtils.REPORT_RESOURCE_BUNDLE, locale));
 		return parameters;
 	}
 
@@ -86,6 +111,46 @@ public class TaskController {
 
 	public Locale getLocale() {
 		return locale;
+	}
+
+	public Task getSelectedTask() {
+		return selectedTask;
+	}
+
+	public void setSelectedTask(Task selectedTask) {
+		this.selectedTask = selectedTask;
+	}
+
+	public String createNewTask() {
+		newTask = new Task();
+		return "taskCreate";
+	}
+
+	private void setGoBackViewId() {
+		this.goBackViewId = FacesContext.getCurrentInstance().getViewRoot()
+				.getViewId();
+	}
+
+	public String goBack() {
+		return goBackViewId;
+	}
+
+	public Task getNewTask() {
+		return newTask;
+	}
+
+	public void setNewTask(Task newTask) {
+		this.newTask = newTask;
+	}
+
+	public String editTask() {
+		Map<String, String> params = FacesContext.getCurrentInstance()
+				.getExternalContext().getRequestParameterMap();
+		Long currentTaskId = Long.valueOf(params.get("currentTaskId"));
+		selectedTask = taskService.findOne(currentTaskId);
+		LOGGER.debug("selected task with id = " + currentTaskId.toString());
+		setGoBackViewId();
+		return "taskEdit";
 	}
 
 }

@@ -11,9 +11,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<jpa:repositories base-package="com.realdolmen.springjsf.integration"
-		entity-manager-factory-ref="entityManagerFactory"
-		transaction-manager-ref="transactionManager" />
+	<jpa:repositories base-package="com.realdolmen.springjsf.integration" />
 
 	<context:property-placeholder location="classpath:application.properties" />
 

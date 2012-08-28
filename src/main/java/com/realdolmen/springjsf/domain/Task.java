@@ -21,7 +21,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 public class Task extends AbstractEntity<Long, Long> {
 
-	@NotEmpty
+	@NotEmpty(message = "{error.not.empty.description}")
 	@Size(max = 48)
 	private String description;
 

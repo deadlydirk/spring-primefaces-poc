@@ -11,6 +11,8 @@ public interface TaskService {
 	
 	void delete(Task task);
 
+	Task findOne(Long id);
+	
 	List<Task> findAll();
 	
 	List<Task> findByDescriptionWithQuery(String description);

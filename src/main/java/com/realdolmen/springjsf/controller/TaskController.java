@@ -63,27 +63,6 @@ public class TaskController {
 		saveTask(newTask);
 		newTask = new Task();
 	}
-	
-	
-	public void saveSelectedTask() {
-		saveTask(selectedTask);
-	}
-	
-	public String deleteSelectedTask() {
-		taskService.delete(selectedTask);
-		invalidateTasks();
-		return "taskList";
-	}
-	
-	public void saveNewTask() {
-		saveTask(newTask);
-		newTask = new Task();
-	}
-
-	public void saveNewTaskAndReset() {
-		saveTask(newTask);
-		newTask = new Task();
-	}
 
 	public void saveSelectedTask() {
 		saveTask(selectedTask);

@@ -21,25 +21,25 @@
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>taskListCreate</from-outcome>
-			<to-view-id>/views/task.jsf</to-view-id>
+			<to-view-id>/views/task/task.jsf</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>taskEdit</from-outcome>
-			<to-view-id>/views/taskFormEdit.jsf</to-view-id>
+			<to-view-id>/views/task/taskFormEdit.jsf</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>taskCreate</from-outcome>
-			<to-view-id>/views/taskFormCreate.jsf</to-view-id>
+			<to-view-id>/views/task/taskFormCreate.jsf</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>taskList</from-outcome>
-			<to-view-id>/views/taskList.jsf</to-view-id>
+			<to-view-id>/views/task/taskList.jsf</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>

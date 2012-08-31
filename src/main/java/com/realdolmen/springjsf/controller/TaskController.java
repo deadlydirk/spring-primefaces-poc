@@ -57,13 +57,9 @@ public class TaskController {
 	
 	public void saveNewTask() {
 		saveTask(newTask);
-	}
-	
-	public void saveNewTaskAndReset() {
-		saveTask(newTask);
 		newTask = new Task();
 	}
-
+	
 	public void saveSelectedTask() {
 		saveTask(selectedTask);
 	}

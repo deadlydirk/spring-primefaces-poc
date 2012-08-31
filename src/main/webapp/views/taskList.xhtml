@@ -6,48 +6,47 @@
 	xmlns:p="http://primefaces.org/ui">
 <ui:composition template="/templates/template.xhtml">
 	<ui:define name="content">
-		<h1>
-			<h:outputText value="#{msg['label.tasks']}" />
-		</h1>
 		<h:form id="taskListForm">
-			<p:dataTable value="#{taskController.tasks}" var="task"
-				id="taskListDataTable">
-				<p:column>
-					<f:facet name="header">
-						<h:outputText value="#{msg['label.priority']}" />
+			<p:panel header="#{msg['label.tasks']}">
+				<p:dataTable value="#{taskController.tasks}" var="task"
+					id="taskListDataTable">
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['label.priority']}" />
+						</f:facet>
+						<h:outputText value="#{task.priority}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['label.description']}" />
+						</f:facet>
+						<h:outputText value="#{task.description}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['label.duedate']}" />
+						</f:facet>
+						<h:outputText value="#{task.dueDate}" />
+					</p:column>
+					<p:column style="width:4%">
+						<p:commandButton icon="ui-icon-search"
+							action="#{taskController.editTask}">
+							<f:param name="currentTaskId" value="#{task.id}" />
+						</p:commandButton>
+					</p:column>
+					<f:facet name="footer">
+						<p:commandButton id="downloadReportButton"
+							value="#{msg['label.download']}"
+							onclick="PrimeFaces.monitorDownload(start, stop)" ajax="false"
+							icon="ui-icon-arrowthichk-s">
+							<p:fileDownload value="#{taskController.reportFile}" />
+						</p:commandButton>
+						<p:commandButton id="createTaskButton"
+							action="#{taskController.createNewTask}"
+							value="#{msg['label.create']}" />
 					</f:facet>
-					<h:outputText value="#{task.priority}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">
-						<h:outputText value="#{msg['label.description']}" />
-					</f:facet>
-					<h:outputText value="#{task.description}" />
-				</p:column>
-				<p:column>
-					<f:facet name="header">
-						<h:outputText value="#{msg['label.duedate']}" />
-					</f:facet>
-					<h:outputText value="#{task.dueDate}" />
-				</p:column>
-				<p:column style="width:4%">
-					<p:commandButton icon="ui-icon-search"
-						action="#{taskController.editTask}">
-						<f:param name="currentTaskId" value="#{task.id}" />
-					</p:commandButton>
-				</p:column>
-				<f:facet name="footer">
-					<p:commandButton id="downloadReportButton"
-						value="#{msg['label.download']}"
-						onclick="PrimeFaces.monitorDownload(start, stop)" ajax="false"
-						icon="ui-icon-arrowthichk-s">
-						<p:fileDownload value="#{taskController.reportFile}" />
-					</p:commandButton>
-					<p:commandButton id="createTaskButton"
-						action="#{taskController.createNewTask}"
-						value="#{msg['label.create']}" />
-				</f:facet>
-			</p:dataTable>
+				</p:dataTable>
+			</p:panel>
 		</h:form>
 	</ui:define>
 </ui:composition>

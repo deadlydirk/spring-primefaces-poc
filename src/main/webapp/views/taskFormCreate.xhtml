@@ -7,25 +7,25 @@
 <ui:composition template="/templates/template.xhtml">
 	<ui:define name="content">
 		<h:form id="taskCreateForm">
-			<h1>
-				<h:outputText value="#{msg['label.create.task']}" />
-			</h1>
-			<p:messages />
-			<p:panelGrid columns="2">
-				<h:outputLabel for="taskDesc" value="#{msg['label.description']}" />
-				<p:inputText value="#{taskController.newTask.description}"
-					id="taskDesc"/>
-				<h:outputLabel for="taskPriority" value="#{msg['label.priority']}" />
-				<p:spinner value="#{taskController.newTask.priority}"
-					id="taskPriority"/>
-				<h:outputLabel for="taskDueDate" value="#{msg['label.duedate']}" />
-				<p:calendar value="#{taskController.newTask.dueDate}"
-					id="taskDueDate" locale="#{taskController.locale}"/>
-			</p:panelGrid>
-			<p:button outcome="taskList" value="#{msg['label.back']}" />
-			<p:commandButton action="#{taskController.saveNewTask}"
-				value="#{msg['label.save']}" type="submit" update="taskCreateForm"/>
-			<p:commandButton type="reset" value="#{msg['label.reset']}" update="taskCreateForm"/>
+			<p:panel header="#{msg['label.create.task']}">
+				<p:messages />
+				<p:panelGrid columns="2">
+					<h:outputLabel for="taskDesc" value="#{msg['label.description']}" />
+					<p:inputText value="#{taskController.newTask.description}"
+						id="taskDesc" />
+					<h:outputLabel for="taskPriority" value="#{msg['label.priority']}" />
+					<p:spinner value="#{taskController.newTask.priority}"
+						id="taskPriority" />
+					<h:outputLabel for="taskDueDate" value="#{msg['label.duedate']}" />
+					<p:calendar value="#{taskController.newTask.dueDate}"
+						id="taskDueDate" locale="#{taskController.locale}" />
+				</p:panelGrid>
+				<p:button outcome="taskList" value="#{msg['label.back']}" />
+				<p:commandButton action="#{taskController.saveNewTask}"
+					value="#{msg['label.save']}" type="submit" update="taskCreateForm" />
+				<p:commandButton type="reset" value="#{msg['label.reset']}"
+					update="taskCreateForm" />
+			</p:panel>
 		</h:form>
 	</ui:define>
 </ui:composition>

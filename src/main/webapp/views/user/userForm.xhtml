@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/template.xhtml">
+	<ui:define name="content">
+
+		<p:panel header="Create a user">
+			<h:messages layout="table" style="width: 100%" />
+
+			<h:form id="userController">
+				<h:inputHidden value="#{userController.id}" id="id" />
+
+				<div class="control-group">
+					<h:outputLabel for="username" value="#{msg['user.username']}"
+						styleClass="control-label" />
+					<div class="controls">
+						<p:inputText value="#{userController.subject.username}"
+							id="username" required="true" />
+						<p:message for="username" styleClass="help-inline" />
+					</div>
+				</div>
+
+				<div class="control-group">
+					<h:outputLabel for="password" value="#{msg['user.password']}"
+						styleClass="control-label" />
+					<div class="controls">
+						<p:password value="#{userController.subject.password}"
+							id="password" redisplay="true" />
+						<p:message for="password" styleClass="help-inline" />
+					</div>
+				</div>
+
+				<div class="control-group">
+					<h:outputLabel for="firstName" value="#{msg['user.firstName']}"
+						styleClass="control-label" />
+					<div class="controls">
+						<p:inputText value="#{userController.subject.firstName}"
+							id="firstName" />
+						<p:message for="firstName" styleClass="help-inline" />
+					</div>
+				</div>
+
+				<div class="control-group">
+					<h:outputLabel for="lastName" value="#{msg['user.lastName']}"
+						styleClass="control-label" />
+					<div class="controls">
+						<p:inputText value="#{userController.subject.lastName}"
+							id="lastName" required="true" />
+						<p:message for="lastName" styleClass="help-inline" />
+					</div>
+				</div>
+
+				<div class="control-group">
+					<h:outputLabel for="email" value="#{msg['user.email']}"
+						styleClass="control-label" />
+					<div class="controls">
+						<p:inputText value="#{userController.subject.email}" id="email"
+							required="true" />
+						<p:message for="email" styleClass="help-inline" />
+					</div>
+				</div>
+
+				<div class="form-actions">
+					<p:commandButton value="#{msg['label.back']}" action="cancel"
+						immediate="true" id="cancel" styleClass="btn" />
+					<p:commandButton value="#{msg['label.save']}"
+						action="#{userController.save}" id="save"
+						styleClass="btn btn-primary" />
+					<p:commandButton type="reset" value="#{msg['label.reset']}"
+						update="taskCreateForm" />
+					<p:commandButton value="#{msg['label.delete']}"
+						action="#{userController.delete}" id="delete" styleClass="btn"
+						 />
+				</div>
+
+			</h:form>
+		</p:panel>
+
+	</ui:define>
+</ui:composition>
+</html>

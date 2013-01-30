@@ -20,32 +20,96 @@
 
 	<navigation-rule>
 		<navigation-case>
-			<from-outcome>taskListCreate</from-outcome>
-			<to-view-id>/views/task/task.jsf</to-view-id>
+			<from-outcome>home</from-outcome>
+			<to-view-id>/views/home.xhtml</to-view-id>
 		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<navigation-case>
-			<from-outcome>taskEdit</from-outcome>
-			<to-view-id>/views/task/taskFormEdit.jsf</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
 		<navigation-case>
 			<from-outcome>taskCreate</from-outcome>
-			<to-view-id>/views/task/taskFormCreate.jsf</to-view-id>
+			<to-view-id>/views/task/taskForm.xhtml</to-view-id>
 		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
 		<navigation-case>
 			<from-outcome>taskList</from-outcome>
-			<to-view-id>/views/task/taskList.jsf</to-view-id>
+			<to-view-id>/views/task/taskList.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>userCreate</from-outcome>
+			<to-view-id>/views/user/userForm.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>userList</from-outcome>
+			<to-view-id>/views/user/userList.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/views/task/task.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/views/task/taskForm.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>taskListCreate</from-outcome>
+			<to-view-id>/views/task/task.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/views/user/userList.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>add</from-outcome>
+			<to-view-id>/views/user/userForm.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/views/user/userForm.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
+		<from-view-id>/views/user/userForm.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>home</from-outcome>
-			<to-view-id>/views/home.jsf</to-view-id>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/views/user/userList.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>error</from-outcome>
+			<to-view-id>/views/user/userForm.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/views/user/userList.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/views/task/taskList.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>add</from-outcome>
+			<to-view-id>/views/task/taskForm.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/views/task/taskForm.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/views/task/taskForm.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/views/task/taskList.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>error</from-outcome>
+			<to-view-id>/views/task/taskForm.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/views/task/taskList.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
 </faces-config>

@@ -1,5 +1,6 @@
 package com.realdolmen.springjsf.domain;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.GeneratedValue;
@@ -14,8 +15,9 @@ import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 @MappedSuperclass
-public abstract class AbstractEntity<K, V> {
+public abstract class AbstractEntity<K, V> implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	@Version
 	private V version;
 	@Id

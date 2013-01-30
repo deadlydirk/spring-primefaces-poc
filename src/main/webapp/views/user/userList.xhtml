@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/templates/template.xhtml">
+	<ui:define name="content">
+
+		<h:form id="editUser">
+			<p:panel header="#{msg['label.users']}">
+				<p:dataTable value="#{userController.subjects}" id="users" var="user">
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['user.id']}" />
+						</f:facet>
+						<h:commandLink action="#{userController.edit}" value="#{user.id}">
+							<f:param name="id" value="#{user.id}" />
+						</h:commandLink>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['user.firstName']}" />
+						</f:facet>
+						<h:outputText value="#{user.firstName}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['user.lastName']}" />
+						</f:facet>
+						<h:outputText value="#{user.lastName}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="#{msg['user.email']}" />
+						</f:facet>
+						<h:outputText value="#{user.email}" />
+					</p:column>
+					<p:column style="width:4%">
+						<p:commandButton icon="ui-icon-search"
+							action="#{userController.edit}">
+							<f:param name="id" value="#{user.id}" />
+						</p:commandButton>
+					</p:column>
+					<f:facet name="footer">
+						<p:commandButton id="createUserButton" action="add"
+							value="#{msg['label.create']}" />
+					</f:facet>
+
+				</p:dataTable>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -4,13 +4,15 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:body>
-	<h1>#{menu.header}</h1>
+	<h1><h:link value="#{msg['menu.home']}" outcome="home" /></h1>
 	<ul>
-		<li><h:link value="#{msg['menu.home']}" outcome="home" /></li>
 		<li>#{msg['menu.manage.tasks']}</li>
 		<li style="margin-left:15px"><h:link value="Create" outcome="taskCreate" /></li>
 		<li style="margin-left:15px"><h:link value="List" outcome="taskList" /></li>
-		<li style="margin-left:15px"><h:link value="List and create" outcome="taskListCreate" /></li>
+		<li style="margin-left:15px"><h:link value="List &amp; Create" outcome="taskListCreate" /></li>
+		<li>#{msg['menu.manage.users']}</li>
+		<li style="margin-left:15px"><h:link value="Create" outcome="userCreate" /></li>
+		<li style="margin-left:15px"><h:link value="List" outcome="userList" /></li>
 	</ul>
 </h:body>
 </html>

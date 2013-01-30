@@ -8,7 +8,7 @@
 	<ui:define name="content">
 		<h:form id="taskListForm">
 			<p:panel header="#{msg['label.tasks']}">
-				<p:dataTable value="#{taskController.tasks}" var="task"
+				<p:dataTable value="#{taskController.subjects}" var="task"
 					id="taskListDataTable">
 					<p:column>
 						<f:facet name="header">
@@ -30,8 +30,8 @@
 					</p:column>
 					<p:column style="width:4%">
 						<p:commandButton icon="ui-icon-search"
-							action="#{taskController.editTask}">
-							<f:param name="currentTaskId" value="#{task.id}" />
+							action="#{taskController.edit}">
+							<f:param name="id" value="#{task.id}" />
 						</p:commandButton>
 					</p:column>
 					<f:facet name="footer">
@@ -42,7 +42,7 @@
 							<p:fileDownload value="#{taskController.reportFile}" />
 						</p:commandButton>
 						<p:commandButton id="createTaskButton"
-							action="#{taskController.createNewTask}"
+							action="add"
 							value="#{msg['label.create']}" />
 					</f:facet>
 				</p:dataTable>

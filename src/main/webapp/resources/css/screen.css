@@ -45,6 +45,8 @@ body {
 #sidebar h1 {
 	display: block;
 	font-size: 120%;
+	margin-top: 0px;
+	padding:5px;
 	border-bottom: 1px solid #d0d0d0;
 }
 

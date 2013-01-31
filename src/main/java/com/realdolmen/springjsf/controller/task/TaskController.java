@@ -64,6 +64,12 @@ public class TaskController extends AbstractCrudController<Task> {
         return SUCCESS;
     }
 
+    public String saveAndReset() {
+        String transition = save();
+        setSubject(new Task());
+        return transition;
+    }
+
     @Override
     public String delete() {
         taskService.delete(taskService.findOne(Long.valueOf(getId())));
@@ -90,4 +96,3 @@ public class TaskController extends AbstractCrudController<Task> {
         return reportFile;
     }
 }
-

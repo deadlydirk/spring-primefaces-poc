@@ -60,7 +60,7 @@
 					<p:calendar value="#{taskController.subject.dueDate}"
 						id="taskDueDate" locale="#{taskController.locale}" />
 				</p:panelGrid>
-				<p:commandButton action="#{taskController.save}"
+				<p:commandButton action="#{taskController.saveAndReset}"
 					value="#{msg['label.create']}"
 					update=":taskListForm,taskCreateForm" type="submit" />
 				<p:commandButton type="reset" value="#{msg['label.reset']}"

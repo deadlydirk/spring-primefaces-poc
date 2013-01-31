@@ -1,10 +1,10 @@
 This is a simple POC project to integrate the following frameworks/technologies:
 
-- Spring 3.1.1.RELEASE: 
+- Spring 3.2.0.RELEASE: 
 	- core; 
 	- context; 
-	- aop 
-	- data jpa
+	- aop; 
+	- data jpa 1.2.0.RELEASE.
 
 - JPA 2 with Hibernate 4.1.5.Final with H2 embedded datasource
 

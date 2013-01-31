@@ -28,12 +28,6 @@
 						</f:facet>
 						<h:outputText value="#{task.dueDate}" />
 					</p:column>
-					<p:column style="width:4%">
-						<p:commandButton icon="ui-icon-search"
-							action="#{taskController.edit}">
-							<f:param name="id" value="#{task.id}" />
-						</p:commandButton>
-					</p:column>
 					<f:facet name="footer">
 						<p:commandButton id="downloadReportButton"
 							value="#{msg['label.download']}"

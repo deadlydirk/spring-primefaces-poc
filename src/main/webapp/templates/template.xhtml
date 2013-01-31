@@ -10,14 +10,13 @@
 	<h:outputStylesheet name="css/screen.css" />
 </h:head>
 <h:body>
-	<h:panelGroup id="page" layout="block">
 		<h:panelGroup id="header" layout="block">
 			<h1>
 				<h:link outcome="home" value="#{msg['menu.manage.tasks']}" />
 			</h1>
 		</h:panelGroup>
 		<h:panelGroup id="container" layout="block">
-			<h:panelGroup id="sidebar" layout="block">
+			<h:panelGroup id="sidebar" layout="block" styleClass="ui-panel ui-widget-content ui-corner-all">
 				<ui:include src="menu.xhtml" />
 			</h:panelGroup>
 			<h:panelGroup id="content" layout="block">
@@ -26,7 +25,6 @@
 		</h:panelGroup>
 		<h:panelGroup id="footer" layout="block">#{msg['footerText']}
 		</h:panelGroup>
-	</h:panelGroup>
 	<p:dialog modal="true" widgetVar="statusDialog"
 		header="#{msg['label.please.wait']}" draggable="false"
 		closable="false" resizable="false">
